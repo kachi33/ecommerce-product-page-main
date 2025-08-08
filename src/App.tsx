@@ -1,8 +1,11 @@
+import Header from "./components/Header";
+
 function App() {
   return (
     <>
+    <Header />
       <div className="bg-white text-black min-h-screen">
-        <div className="container mx-auto px-4">
+        <div className="container bg-amber-800 mx-auto px-4">
           <h1 className="text-3xl font-bold my-4">E-commerce Product Page</h1>
           <p className="text-lg">Welcome to the product page!</p>
          <p> Collections Men Women About Contact Sneaker Company Fall Limited
