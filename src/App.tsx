@@ -1,32 +1,78 @@
 import Header from "./components/Header";
+import { useState } from "react";
 
 function App() {
+  const [count, setCount] = useState(0);
+
+  const handleCountChange = (operation: "increment" | "decrement") => {
+    setCount((prevCount) => {
+      if (operation === "increment") {
+        return prevCount + 1;
+      } else if (operation === "decrement") {
+        return prevCount > 0 ? prevCount - 1 : 0;
+      }
+      return prevCount;
+    });
+  };
   return (
     <>
-    <div className="md:px-24">
-    <Header />
-      <div className="bg-white text-black ">
-        <div className="container bg-amber-800 mx-auto px-4">
-          <h1 className="text-3xl font-bold my-4">E-commerce Product Page</h1>
-          <p className="text-lg">Welcome to the product page!</p>
-         <p> Collections Men Women About Contact Sneaker Company Fall Limited
-          Edition Sneakers These low-profile sneakers are your perfect casual
-          wear companion. Featuring a durable rubber outer sole, they'll
-          withstand everything the weather can offer. $125.00 50% $250.00 0 Add
-          to cart</p>
-          <div className="attribution">
-            Challenge by{" "}
-            <a
-              href="https://www.frontendmentor.io?ref=challenge"
-              target="_blank"
-            >
-              Frontend Mentor
-            </a>
-            . Coded by <a href="#">Your Name Here</a>.
-          </div>
-        </div>
-      </div>
-      </div>
+      <div className="md:px-24">
+        <Header />
+            <div className="flex flex-col md:flex-row items-center justify-center md:gap-32 ">
+              <div className="flex max-w-md md:h-96 flex-col items-center gap-4 md:gap-8">
+              <img
+                src="/image-product-1.jpg"
+                alt="Product Thumbnail"
+                className="object-cover h-full w-full items-center md:rounded-lg shadow-md"
+              />
+                <ul className="md:flex hidden gap-2 md:gap-10">
+                  <li><img src="/image-product-1-thumbnail.jpg" alt="" className="cursor-pointer rounded-lg shadow-md" /></li>
+                  <li><img src="/image-product-2-thumbnail.jpg" alt="" className="cursor-pointer rounded-lg shadow-md" /></li>
+                  <li><img src="/image-product-3-thumbnail.jpg" alt="" className="cursor-pointer rounded-lg shadow-md" /></li>
+                  <li><img src="/image-product-4-thumbnail.jpg" alt="" className="cursor-pointer rounded-lg shadow-md" /></li>
+                </ul>
+              </div>
+              <div className="flex flex-col px-4 py-6 gap-4 justify-center h-full max-w-md">
+                <h1 className="text-sm uppercase text-gray-400 font-bold md:mt-32"> Sneaker Company</h1>
+                <h2 className="md:text-5xl text-3xl font-bold md:mb-6">
+                  Fall Limited Edition Sneakers
+                </h2>
+                <p className="text-sm text-gray-400">
+                  These low-profile sneakers are your perfect casual wear
+                  companion. Featuring a durable rubber outer sole, they'll
+                  withstand everything the weather can offer.
+                </p>
+                <div className="flex md:flex-col gap-3 justify-between">
+                <div className="flex items-center gap-2">
+                <data className="text-2xl font-bold">$125.00</data>
+                <span className="px-2  text-xs bg-gray-700 text-white rounded">50% </span>
+                </div>
+                <data className="text-sm text-gray-400 line-through">
+                  $250.00
+                </data>
+                </div>
+                <div className="flex md:flex-row flex-col gap-4 mt-4 items-center justify-between">
+                <div className="bg-gray-100 flex w-full md:w-[30%] items-center justify-between px-4 py-4 rounded-lg">
+                  <img
+                    src="/icon-minus.svg"
+                    alt="minus"
+                    onClick={() => handleCountChange("decrement")}
+                    />{" "}
+                  {count}{" "}
+                  <img
+                    src="/icon-plus.svg"
+                    alt="plus"
+                    onClick={() => handleCountChange("increment")}
+                    />
+                </div>
+                  <button className="bg-amber-600 flex justify-center  items-center gap-3 text-black px-4 py-4 rounded-lg w-full md:w-[70%] shadow-lg hover:bg-amber-500 transition-colors">
+                    <img src="/icon-cart.svg" alt="cart" className="filter brightness-0 h-4 w-4" />
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+            </div>
+                    </div>
     </>
   );
 }
