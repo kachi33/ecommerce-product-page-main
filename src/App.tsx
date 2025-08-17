@@ -3,8 +3,9 @@ import Header from "./components/Header";
 function App() {
   return (
     <>
+    <div className="md:px-24">
     <Header />
-      <div className="bg-white text-black min-h-screen">
+      <div className="bg-white text-black ">
         <div className="container bg-amber-800 mx-auto px-4">
           <h1 className="text-3xl font-bold my-4">E-commerce Product Page</h1>
           <p className="text-lg">Welcome to the product page!</p>
@@ -24,6 +25,7 @@ function App() {
             . Coded by <a href="#">Your Name Here</a>.
           </div>
         </div>
+      </div>
       </div>
     </>
   );
