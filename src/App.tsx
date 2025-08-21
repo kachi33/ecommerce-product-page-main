@@ -1,8 +1,11 @@
 import Header from "./components/Header";
 import { useState } from "react";
+import { useCart } from "./hooks/useCart";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [selectedImage, setSelectedImage] = useState(1);
+  const { addToCart, getTotalItems, cartItems, removeFromCart } = useCart();
 
   const handleCountChange = (operation: "increment" | "decrement") => {
     setCount((prevCount) => {
@@ -14,22 +17,50 @@ function App() {
       return prevCount;
     });
   };
+
+  const handleAddToCart = () => {
+    if (count > 0) {
+      addToCart({
+        id: 1,
+        name: "Fall Limited Edition Sneakers",
+        price: 125.00,
+        image: `/image-product-${selectedImage}.jpg`
+      }, count);
+      setCount(0);
+    }
+  };
   return (
     <>
       <div className="md:px-24">
-        <Header />
+        <Header 
+          cartItems={cartItems}
+          getTotalItems={getTotalItems}
+          removeFromCart={removeFromCart}
+        />
             <div className="flex flex-col md:flex-row items-center justify-center md:gap-32 ">
               <div className="flex max-w-md md:h-96 flex-col items-center gap-4 md:gap-8">
               <img
-                src="/image-product-1.jpg"
+                src={`/image-product-${selectedImage}.jpg`}
                 alt="Product Thumbnail"
                 className="object-cover h-full w-full items-center md:rounded-lg shadow-md"
               />
                 <ul className="md:flex hidden gap-2 md:gap-10">
-                  <li><img src="/image-product-1-thumbnail.jpg" alt="" className="cursor-pointer rounded-lg shadow-md" /></li>
-                  <li><img src="/image-product-2-thumbnail.jpg" alt="" className="cursor-pointer rounded-lg shadow-md" /></li>
-                  <li><img src="/image-product-3-thumbnail.jpg" alt="" className="cursor-pointer rounded-lg shadow-md" /></li>
-                  <li><img src="/image-product-4-thumbnail.jpg" alt="" className="cursor-pointer rounded-lg shadow-md" /></li>
+                  <li className="relative">
+                    <img src="/image-product-1-thumbnail.jpg" alt="" className={`cursor-pointer rounded-lg shadow-md ${selectedImage === 1 ? 'ring-2 ring-amber-600' : ''}`} onClick={() => setSelectedImage(1)} />
+                    {selectedImage === 1 && <div className="absolute inset-0 bg-white opacity-50 rounded-lg"></div>}
+                  </li>
+                  <li className="relative">
+                    <img src="/image-product-2-thumbnail.jpg" alt="" className={`cursor-pointer rounded-lg shadow-md ${selectedImage === 2 ? 'ring-2 ring-amber-600' : ''}`} onClick={() => setSelectedImage(2)} />
+                    {selectedImage === 2 && <div className="absolute inset-0 bg-white opacity-50 rounded-lg"></div>}
+                  </li>
+                  <li className="relative">
+                    <img src="/image-product-3-thumbnail.jpg" alt="" className={`cursor-pointer rounded-lg shadow-md ${selectedImage === 3 ? 'ring-2 ring-amber-600' : ''}`} onClick={() => setSelectedImage(3)} />
+                    {selectedImage === 3 && <div className="absolute inset-0 bg-white opacity-50 rounded-lg"></div>}
+                  </li>
+                  <li className="relative">
+                    <img src="/image-product-4-thumbnail.jpg" alt="" className={`cursor-pointer rounded-lg shadow-md ${selectedImage === 4 ? 'ring-2 ring-amber-600' : ''}`} onClick={() => setSelectedImage(4)} />
+                    {selectedImage === 4 && <div className="absolute inset-0 bg-white opacity-50 rounded-lg"></div>}
+                  </li>
                 </ul>
               </div>
               <div className="flex flex-col px-4 py-6 gap-4 justify-center h-full max-w-md">
@@ -65,7 +96,10 @@ function App() {
                     onClick={() => handleCountChange("increment")}
                     />
                 </div>
-                  <button className="bg-amber-600 flex justify-center  items-center gap-3 text-black px-4 py-4 rounded-lg w-full md:w-[70%] shadow-lg hover:bg-amber-500 transition-colors">
+                  <button 
+                    onClick={handleAddToCart}
+                    className="bg-amber-600 flex justify-center  items-center gap-3 text-black px-4 py-4 rounded-lg w-full md:w-[70%] shadow-lg hover:bg-amber-500 transition-colors"
+                  >
                     <img src="/icon-cart.svg" alt="cart" className="filter brightness-0 h-4 w-4" />
                     Add to cart
                   </button>
