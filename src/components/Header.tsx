@@ -1,36 +1,46 @@
 import { useState } from 'react';
 import type { CartItem } from '../hooks/useCart';
 
-const openDrawer = () => {
-    const drawer = document.querySelector('.drawer') as HTMLElement;
-    if (drawer) {
-        drawer.classList.toggle('hidden');
-    }
-}
 
 interface HeaderProps {
   cartItems: CartItem[];
   getTotalItems: () => number;
   removeFromCart: (id: number) => void;
+  setIsSidebarOpen: (open: boolean) => void;
 }
 
-const Header = ({ cartItems, getTotalItems, removeFromCart }: HeaderProps) => {
+const Header = ({ cartItems, getTotalItems, removeFromCart, setIsSidebarOpen }: HeaderProps) => {
     const [isCartOpen, setIsCartOpen] = useState(false);
+    // const [success, setSuccess] = useState(false);
+
+  const openDrawer = () => {
+  // Logic to open the drawer
+  setIsSidebarOpen(true);
+  console.log("Drawer opened");
+}
+
+    
     
     const toggleCart = () => {
         setIsCartOpen(!isCartOpen);
     };
+    // const checkout = (itemId: number) => {
+    //   removeFromCart(itemId)
+    //   setSuccess(true);
+    //   setTimeout(() => setSuccess())
+    // }
+
     return ( 
-        <header className="flex items-center py-4 px-8  md:px-0 gap-4 md:gap-18 md:border-b border-gray-300 ">
+        <header className="flex items-center py-4 md:pt-10 md:pb-12 px-8  md:px-0 gap-4 md:gap-18 md:border-b border-gray-300 ">
             <img src="/icon-menu.svg" alt="Menu" className="h-4 w-4 md:hidden cursor-pointer hover:opacity-70 transition-opacity" onClick={openDrawer} />
             <img src="/logo.svg" alt="Logo" className="h-5 w-auto" />
             <nav className="flex md:justify-between justify-end items-center w-full gap-8">
                 <ul className="md:flex hidden items-center gap-8 py-8 md:py-0 border-amber-600 text-gray-500">
-                    <li><a href="#home" className="hover:text-gray-900 py-8 hover:border-b-4 hover:border-amber-500 transition-all">Collections</a></li>
-                    <li><a href="#" className="hover:text-gray-900 py-8 hover:border-b-4 hover:border-amber-500 transition-all">Men</a></li>
-                    <li><a href="#" className="hover:text-gray-900 py-8 hover:border-b-4 hover:border-amber-500 transition-all">Women</a></li>
-                    <li><a href="#" className="hover:text-gray-900 py-8 hover:border-b-4 hover:border-amber-500 transition-all">About</a></li>
-                    <li><a href="#" className="hover:text-gray-900 py-8 hover:border-b-4 hover:border-amber-500 transition-all">Contact</a></li>
+                    <li><a href="#home" className="hover:text-gray-900 pb-16 hover:border-b-4 hover:border-amber-500 transition-all">Collections</a></li>
+                    <li><a href="#" className="hover:text-gray-900 pb-pb-16 hover:border-b-4 hover:border-amber-500 transition-all">Men</a></li>
+                    <li><a href="#" className="hover:text-gray-900 pb-16 hover:border-b-4 hover:border-amber-500 transition-all">Women</a></li>
+                    <li><a href="#" className="hover:text-gray-900 pb-16 hover:border-b-4 hover:border-amber-500 transition-all">About</a></li>
+                    <li><a href="#" className="hover:text-gray-900 pb-16 hover:border-b-4 hover:border-amber-500 transition-all">Contact</a></li>
                 </ul>
 
                 <ol className="flex items-center gap-4 md:gap-16">
