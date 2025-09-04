@@ -10,6 +10,8 @@ This is a solution to the [E-commerce product page challenge on Frontend Mentor]
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
+    - [What I learned](#what-i-learned)
+    - [Continued development](#continued-development)
 - [Author](#author)
 
 
@@ -28,13 +30,13 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./screenshot.png)
 
 
 ### Links
 
-- Solution URL: [Coming soon](https://github.com/kachi33/ecommerce-product-page-main)
-- Live Site URL: [Coming soon](https://ecommerce-product-page-main-alpha-ruby.vercel.app/)
+- Solution URL: [View now...](https://github.com/kachi33/ecommerce-product-page-main)
+- Live Site URL: [View now...](https://ecommerce-product-page-main-alpha-ruby.vercel.app/)
 
 ## My process
 
@@ -44,12 +46,15 @@ Users should be able to:
 - [React Typescript](https://reactjs.org/) - JS library
 
 ### What I learned
- React short circuit Evaluation - I learnt how to conditionally render UI element using react's useState hook and some conditional Jsx block.
+- React short circuit Evaluation - I learnt how to conditionally render UI element using react's useState hook and some conditional Jsx block.
+- Breaking down the functions within the hook was a challenge but once i finally noted down the underlining core actions it was fairly easygoing. Using Typescript also helped and the type checking catches so many potential bugs early
 
- 
+
 
 ### Continued development
-
+- Best practices for structuring complex custom hooks beyond basic state management.
+- When to split functionality into multiple smaller hooks vs. keeping it in one larger hook 
+- Proper dependency management in custom hooks to avoid unnecessary re-renders
 
 ## Author
 
